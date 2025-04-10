@@ -9,8 +9,8 @@ It is generated with [Stainless](https://www.stainless.com/).
 Because it's not published yet, clone the repo and build it:
 
 ```sh
-git clone git@github.com:stainless-sdks/antire-netsuitempc-typescript.git
-cd antire-netsuitempc-typescript
+git clone git@github.com:llrightll/antire-netsuite.git
+cd antire-netsuite
 yarn && ./scripts/build-all
 ```
 
@@ -39,7 +39,7 @@ For clients with a configuration JSON, it might look something like this:
   "mcpServers": {
     "antire_netsuitempc_api": {
       "command": "npx",
-      "args": ["-y", "/path/to/local/antire-netsuitempc-typescript/packages/mcp-server"],
+      "args": ["-y", "/path/to/local/antire-netsuite/packages/mcp-server"],
       "env": {
         "ANTIRE_NETSUITEMPC_API_KEY": "My API Key"
       }
