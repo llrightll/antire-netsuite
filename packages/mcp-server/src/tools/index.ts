@@ -17,7 +17,10 @@ import update_v1_record_timebill from './record/v1/timebill/update-v1-record-tim
 import list_v1_record_timebill from './record/v1/timebill/list-v1-record-timebill';
 import execute_suiteql_query_v1 from './query/v1/execute-suiteql-query-v1';
 
-export type HandlerFunction = (client: AntireNetsuitempc, args: any) => Promise<any>;
+export type HandlerFunction = (
+  client: AntireNetsuitempc,
+  args: Record<string, unknown> | undefined,
+) => Promise<any>;
 
 export type Metadata = {
   resource: string;
@@ -61,19 +64,33 @@ export function query(filters: Filter[], endpoints: Endpoint[]): Endpoint[] {
   if (filters.length === 0) {
     return endpoints;
   }
-  const allExcludes = filters.every((filter) => filter.op === 'exclude');
 
-  return endpoints.filter((endpoint: Endpoint) => {
+  const allExcludes = filters.every((filter) => filter.op === 'exclude');
+  const unmatchedFilters = new Set(filters);
+
+  const filtered = endpoints.filter((endpoint: Endpoint) => {
     let included = false || allExcludes;
 
     for (const filter of filters) {
       if (match(filter, endpoint)) {
+        unmatchedFilters.delete(filter);
         included = filter.op === 'include';
       }
     }
 
     return included;
   });
+
+  // Check if any filters didn't match
+  if (unmatchedFilters.size > 0) {
+    throw new Error(
+      `The following filters did not match any endpoints: ${[...unmatchedFilters]
+        .map((f) => `${f.type}=${f.value}`)
+        .join(', ')}`,
+    );
+  }
+
+  return filtered;
 }
 
 function match({ type, value }: Filter, endpoint: Endpoint): boolean {
