@@ -6,7 +6,7 @@
     "rootDir": "./dist/src",
     "paths": {
       "antire-netsuitempc/*": ["dist/src/*"],
-      "antire-netsuitempc": ["dist/src/index.ts"],
+      "antire-netsuitempc": ["dist/src/index.ts"]
     },
     "noEmit": false,
     "declaration": true,
