@@ -23,8 +23,8 @@ export const tool: Tool = {
   },
 };
 
-export const handler = (client: AntireNetsuitempc, args: any) => {
-  const { id } = args;
+export const handler = (client: AntireNetsuitempc, args: Record<string, unknown> | undefined) => {
+  const { id, ...body } = args as any;
   return client.record.v1.timebill.retrieve(id);
 };
 
