@@ -273,8 +273,8 @@ export const tool: Tool = {
   },
 };
 
-export const handler = (client: AntireNetsuitempc, args: any) => {
-  const { id, ...body } = args;
+export const handler = (client: AntireNetsuitempc, args: Record<string, unknown> | undefined) => {
+  const { id, ...body } = args as any;
   return client.record.v1.customer.update(id, body);
 };
 
