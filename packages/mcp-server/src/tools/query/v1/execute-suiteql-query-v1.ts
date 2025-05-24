@@ -35,8 +35,8 @@ export const tool: Tool = {
   },
 };
 
-export const handler = (client: AntireNetsuitempc, args: any) => {
-  const { ...body } = args;
+export const handler = (client: AntireNetsuitempc, args: Record<string, unknown> | undefined) => {
+  const body = args as any;
   return client.query.v1.executeSuiteql(body);
 };
 

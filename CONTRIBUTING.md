@@ -42,15 +42,15 @@ If you’d like to use the repository from source, you can either install from g
 To install via git:
 
 ```sh
-$ npm install git+ssh://git@github.com:stainless-sdks/antire-netsuitempc-typescript.git
+$ npm install git+ssh://git@github.com:llrightll/antire-netsuite.git
 ```
 
 Alternatively, to link a local copy of the repo:
 
 ```sh
 # Clone
-$ git clone https://www.github.com/stainless-sdks/antire-netsuitempc-typescript
-$ cd antire-netsuitempc-typescript
+$ git clone https://www.github.com/llrightll/antire-netsuite
+$ cd antire-netsuite
 
 # With yarn
 $ yarn link
